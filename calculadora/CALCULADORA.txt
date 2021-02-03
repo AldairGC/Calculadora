@@ -1,0 +1,177 @@
+Index HTML.
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <table id="calculadora">
+      <thead>
+        <tr>
+          <th colspan="4">
+         <input type="text" name="display" id="display" placeholder="0">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><button id="btn-limpiar"> C </button></td>
+          <td><button id="btn-inverso"> 1/x </button></td>
+          <td><button id="btn-cuadrado"> x^2 </button></td>
+          <td><button class="btn-operador"> / </button></td>
+        </tr>
+        <tr>
+          <td><button class="btn-numero"> 7 </button></td>
+          <td><button class="btn-numero"> 8 </button></td>
+          <td><button class="btn-numero"> 9 </button></td>
+          <td><button class="btn-operador"> x </button></td>
+        </tr>
+        <tr>
+          <td><button class="btn-numero"> 4 </button></td>
+          <td><button class="btn-numero"> 5 </button></td>
+          <td><button class="btn-numero"> 6 </button></td>
+          <td><button class="btn-operador"> - </button></td>
+        </tr>
+        <tr>
+          <td><button class="btn-numero"> 1 </button></td>
+          <td><button class="btn-numero"> 2 </button></td>
+          <td><button class="btn-numero"> 3 </button></td>
+          <td><button class="btn-operador"> + </button></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button class="btn-numero"> 0 </button></td>
+          <td><button id="btn-punto"> . </button></td>
+          <td><button id="btn-igual"> = </button></td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+  </script>
+  </body>
+</html>
+
+STYLE.CSS
+button
+{
+  padding: 5px 10px;
+  font-size: 2rem;
+  border: 0;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.btn-numero
+{
+  background-color: #00d4ff;
+}
+
+.btn-numero:hover
+{
+  background: rgb(2, 0, 36);
+  background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(9, 13, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  color: #FFF;
+}
+
+.btn-operador
+{
+  background: rgb(34, 913, 195);
+  background: linear-gradient(207deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
+
+#btn-suma
+{
+  height: 6rem;
+}
+
+#cacaca lculadora
+{
+  border: 5px solid #EDEDED;
+}
+
+#display
+{
+  background-color: #000;
+  color: #5FF707;
+  font-size: 2rem;
+  padding: 10px 1px;
+}
+
+SCRIPS.JS
+
+$(function()
+    {
+      //alert("Hola mundo desde jquery");
+      $('.btn-numero').on('click', function()
+      {
+        var numero = $(this).text();
+        var display = $('#display').val();
+        $('#display').val(display + numero);
+      });
+
+      $('.btn-operador').on('click', function()
+      {
+        var display = $('#display').val();
+        var operador = $(this).text();
+        $('#display').val(display + operador);
+      });
+
+      $('#btn-punto').on('click', function()
+      {
+        var display = $('#display').val();
+        $('#display').val(display + '.');
+      });
+
+      $('#btn-limpiar').on('click', function()
+      {
+        $('#display').val('');
+      });
+
+      $('#btn-inverso').on('click', function()
+      {
+        var display = $('#display').val();
+        $('#display').val(1/display);
+      });
+
+      $('#btn-cuadrado').on('click', function()
+      {
+        var display = $('#display').val();
+        $('#display').val(display * display);
+      });
+
+      $('#btn-igual').on('click', function()
+      {
+        var display = $('#display').val();
+        if(display.includes(' + '))
+        {
+          //alert('Es una suma');
+          operandos = display.split(' + ');
+          console.log(operandos);
+          $('#display').val(parseFloat(operandos[0]) + parseFloat(operandos[1]));
+
+        } else if(display.includes(' - '))
+        {
+          //alert('Es una resta');
+          operandos = display.split(' - ');
+          $('#display').val(parseFloat(operandos[0]) - parseFloat(operandos[1]));
+
+        } else if(display.includes(' x '))
+        {
+          //alert('Es una multiplicacion');
+          operandos = display.split(' x ');
+          $('#display').val(parseFloat(operandos[0]) * parseFloat(operandos[1]));
+          
+        } else 
+        {
+          //alert('Division');
+          operandos = display.split(' / ');
+          $('#display').val(parseFloat(operandos[0]) / parseFloat(operandos[1]));
+        }
+      });
+    })

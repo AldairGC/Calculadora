@@ -1,0 +1,44 @@
+button
+{
+  padding: 5px 10px;
+  font-size: 2rem;
+  border: 0;
+  border-radius: 3px;
+  width: 94%;
+}
+
+.btn-numero, button
+{
+  background-color: #ffffff;
+  padding: 30px;
+  margin-left: 10px;
+  border-radius: 1rem;
+}
+
+
+.btn-operador
+{
+  background-color: beige;
+}
+
+#btn
+{
+  background-color: beige;
+  height: 6rem;
+}
+
+#cacaca 
+{
+  border: 5px solid #EDEDED;
+}
+
+#display
+{
+    background-color: #000;
+    color: #5FF707;
+    font-size: 2rem;
+    padding: 10px 1px;
+    margin: 5px;
+    border-radius: 21px;
+    width: 94%;
+}
